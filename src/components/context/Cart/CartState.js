@@ -19,7 +19,7 @@ const CartState = (props) => {
 
   // 2 -- Reducer - Función de cambio autorizada
   const [globalState, dispatch] = useReducer(CartReducer, initialState);
-  console.log(globalState);
+  // console.log(globalState);
 
   // 3 -- Funciones API / conexión a REDUCERs (dispatch)
   const addProduct = async (product) => {
