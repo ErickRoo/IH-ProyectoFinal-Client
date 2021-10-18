@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import CartContext from './context/Cart/CartContext'
 
 function Home() {
+
+  const ctxCart = useContext(CartContext);
+  const { itemCount } = ctxCart.cart;
+
   return (
     <>
 
@@ -39,7 +44,7 @@ function Home() {
                 <span className="sr-only">Close menu</span>
                 {/* <!-- Heroicon name: outline/x --> */}
                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
@@ -61,7 +66,7 @@ function Home() {
               </div>
 
               {/* <!-- 'Women' tab panel, show/hide based on tab state. --> */}
-              <div id="tabs-1-panel-1" className="px-4 pt-10 pb-6 space-y-12" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
+              <div id="tabs-1-panel-1" className="px-4 pt-10 pb-6 space-y-12" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex="0">
                 <div className="grid grid-cols-1 items-start gap-y-10 gap-x-6">
                   <div className="grid grid-cols-1 gap-y-10 gap-x-6">
                     <div>
@@ -198,7 +203,7 @@ function Home() {
               </div>
 
               {/* <!-- 'Men' tab panel, show/hide based on tab state. --> */}
-              <div id="tabs-1-panel-2" className="px-4 pt-10 pb-6 space-y-12" aria-labelledby="tabs-1-tab-2" role="tabpanel" tabindex="0">
+              <div id="tabs-1-panel-2" className="px-4 pt-10 pb-6 space-y-12" aria-labelledby="tabs-1-tab-2" role="tabpanel" tabIndex="0">
                 <div className="grid grid-cols-1 items-start gap-y-10 gap-x-6">
                   <div className="grid grid-cols-1 gap-y-10 gap-x-6">
                     <div>
@@ -358,7 +363,7 @@ function Home() {
               {/* <!-- Currency selector --> */}
               <form>
                 <div className="inline-block">
-                  <label for="mobile-currency" className="sr-only">Currency</label>
+                  <label htmlFor="mobile-currency" className="sr-only">Currency</label>
                   <div className="-ml-2 group relative border-transparent rounded-md focus-within:ring-2 focus-within:ring-white">
                     <select id="mobile-currency" name="currency" className="bg-none border-transparent rounded-md py-0.5 pl-2 pr-5 flex items-center text-sm font-medium text-gray-700 group-hover:text-gray-800 focus:outline-none focus:ring-0 focus:border-transparent">
                       <option>CAD</option>
@@ -373,7 +378,7 @@ function Home() {
                     </select>
                     <div className="absolute right-0 inset-y-0 flex items-center pointer-events-none">
                       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" className="w-5 h-5 text-gray-500">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4" />
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 8l4 4 4-4" />
                       </svg>
                     </div>
                   </div>
@@ -391,7 +396,7 @@ function Home() {
                 {/* <!-- Currency selector --> */}
                 <form className="hidden lg:block lg:flex-1">
                   <div className="flex">
-                    <label for="desktop-currency" className="sr-only">Currency</label>
+                    <label htmlFor="desktop-currency" className="sr-only">Currency</label>
                     <div className="-ml-2 group relative bg-gray-900 border-transparent rounded-md focus-within:ring-2 focus-within:ring-white">
                       <select id="desktop-currency" name="currency" className="bg-none bg-gray-900 border-transparent rounded-md py-0.5 pl-2 pr-5 flex items-center text-sm font-medium text-white group-hover:text-gray-100 focus:outline-none focus:ring-0 focus:border-transparent">
                         <option>CAD</option>
@@ -406,7 +411,7 @@ function Home() {
                       </select>
                       <div className="absolute right-0 inset-y-0 flex items-center pointer-events-none">
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" className="w-5 h-5 text-gray-300">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4" />
+                          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 8l4 4 4-4" />
                         </svg>
                       </div>
                     </div>
@@ -780,7 +785,7 @@ function Home() {
                         <span className="sr-only">Open menu</span>
                         {/* <!-- Heroicon name: outline/menu --> */}
                         <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                       </button>
 
@@ -789,7 +794,7 @@ function Home() {
                         <span className="sr-only">Search</span>
                         {/* <!-- Heroicon name: outline/search --> */}
                         <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                       </a>
                     </div>
@@ -808,7 +813,7 @@ function Home() {
                               <span className="sr-only">Search</span>
                               {/* <!-- Heroicon name: outline/search --> */}
                               <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                               </svg>
                             </a>
                           </div>
@@ -818,7 +823,7 @@ function Home() {
                               <span className="sr-only">Account</span>
                               {/* <!-- Heroicon name: outline/user --> */}
                               <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                               </svg>
                             </a>
                           </div>
@@ -830,9 +835,9 @@ function Home() {
                           <a href="#" className="group -m-2 p-2 flex items-center">
                             {/* <!-- Heroicon name: outline/shopping-cart --> */}
                             <svg className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
-                            <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                            <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{itemCount}</span>
                             <span className="sr-only">items in cart, view bag</span>
                           </a>
                         </div>
@@ -1278,8 +1283,8 @@ function Home() {
                     <h3 className="font-semibold text-gray-900">Sign up for our newsletter</h3>
                     <p className="mt-2 text-sm text-gray-500">The latest news, articles, and resources, sent to your inbox weekly.</p>
                     <form className="mt-4 sm:mt-6 sm:flex">
-                      <label for="email-address" className="sr-only">Email address</label>
-                      <input id="email-address" type="text" autocomplete="email" required className="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
+                      <label htmlFor="email-address" className="sr-only">Email address</label>
+                      <input id="email-address" type="text" autoComplete="email" required className="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" />
                       <div className="mt-3 sm:flex-shrink-0 sm:mt-0 sm:ml-4">
                         <button type="submit" className="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-indigo-500">
                           Sign up
