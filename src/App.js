@@ -22,6 +22,7 @@ import Rent from "./components/Purchase/Rent";
 import ListEquipment from "./components/Equipment/ListEquipment";
 import DetailsEquipment from "./components/Equipment/DetailsEquipment";
 import Header from "./components/Layout/Header";
+import CreateEquipment from "./components/Equipment/CreateEquipment";
 
 import CartState from "./components/context/Cart/CartState";
 import EquipState from "./components/context/Equipment/EquipState";
@@ -53,6 +54,7 @@ function App() {
                 {/* RUTAS PUBLICAS */}
                 <Route exact path="/" component={Home} />
                 <Route exact path="/lista-equipos" component={ListEquipment} />
+                <Route exact path="/crear-equipos" component={CreateEquipment} />
                 <Route exact path="/detalles-equipo/:idEquipo" component={DetailsEquipment} />
 
               </Switch>

@@ -25,8 +25,6 @@ const EquipState = (props) => {
 
       const equipmentFromDB = res.data.data;
 
-      console.log(equipmentFromDB);
-
       dispatch({
         type: "OBTENER_EQUIPOS",
         payload: equipmentFromDB,
@@ -37,12 +35,25 @@ const EquipState = (props) => {
     }
   }
 
+  const createEquipment = async (dataForm) => {
+
+    try {
+      await axiosClient.post("/api/equipment/create-equipment", dataForm);
+      return getAllEquipment();
+
+    } catch (error) {
+      console.log(`Hubo un error al crear un equipo: ${error}`);
+
+    }
+  }
+
   // 4 -- Retorno - Envío de datos a los componentes
   return (
     <EquipContext.Provider
       value={{
         equipment: globalState.equipment,
         getAllEquipment,
+        createEquipment,
       }}
     >
       {props.children}
