@@ -24,9 +24,15 @@ import DetailsEquipment from "./components/Equipment/DetailsEquipment";
 import Header from "./components/Layout/Header";
 import CreateEquipment from "./components/Equipment/CreateEquipment";
 
+// Contextos
 import CartState from "./context/Cart/CartState";
 import EquipState from "./context/Equipment/EquipState";
 import UsersState from "./context/Users/UsersState";
+
+//Middlewares de Routes
+import AuthRoute from "./components/Routes/AuthRoute";
+import PublicRoute from "./components/Routes/PublicRoute";
+import PrivateRoute from "./components/Routes/PrivateRoute";
 
 const stripePromise = loadStripe("pk_test_51JlgnJCBdMx5CgSUp1z3MIGOwwzzYEmi1r19hx7O1HbhDSo5O2rIaULZTbjQfq4tKkpYK5o7RDSSizIM4m1NqrLu00PxAu5IJ3");
 
@@ -44,20 +50,20 @@ function App() {
                 <Switch>
 
                   {/* RUTAS PRIVADAS */}
-                  <Route exact path="/perfil" component={Profile} />
-                  <Route exact path="/form-compra" component={Buy} />
-                  <Route exact path="/form-renta" component={Rent} />
+                  <PrivateRoute exact path="/perfil" component={Profile} />
+                  <PrivateRoute exact path="/form-compra" component={Buy} />
+                  <PrivateRoute exact path="/form-renta" component={Rent} />
+                  <PrivateRoute exact path="/crear-equipos" component={CreateEquipment} />
 
 
                   {/* RUTAS DE AUTENTICACIÓN */}
-                  <Route exact path="/iniciar-sesion" component={Login} />
-                  <Route exact path="/crear-cuenta" component={Signup} />
+                  <AuthRoute exact path="/iniciar-sesion" component={Login} />
+                  <AuthRoute exact path="/crear-cuenta" component={Signup} />
 
                   {/* RUTAS PUBLICAS */}
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/lista-equipos" component={ListEquipment} />
-                  <Route exact path="/crear-equipos" component={CreateEquipment} />
-                  <Route exact path="/detalles-equipo/:idEquipo" component={DetailsEquipment} />
+                  <PublicRoute exact path="/" component={Home} />
+                  <PublicRoute exact path="/lista-equipos" component={ListEquipment} />
+                  <PublicRoute exact path="/detalles-equipo/:idEquipo" component={DetailsEquipment} />
 
                 </Switch>
               </Router>
