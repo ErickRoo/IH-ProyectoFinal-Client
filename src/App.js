@@ -24,9 +24,9 @@ import DetailsEquipment from "./components/Equipment/DetailsEquipment";
 import Header from "./components/Layout/Header";
 import CreateEquipment from "./components/Equipment/CreateEquipment";
 
-import CartState from "./components/context/Cart/CartState";
-import EquipState from "./components/context/Equipment/EquipState";
-import UsersState from "./components/context/Users/UsersState";
+import CartState from "./context/Cart/CartState";
+import EquipState from "./context/Equipment/EquipState";
+import UsersState from "./context/Users/UsersState";
 
 const stripePromise = loadStripe("pk_test_51JlgnJCBdMx5CgSUp1z3MIGOwwzzYEmi1r19hx7O1HbhDSo5O2rIaULZTbjQfq4tKkpYK5o7RDSSizIM4m1NqrLu00PxAu5IJ3");
 

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import EquipContext from '../context/Equipment/EquipContext';
+import EquipContext from '../../context/Equipment/EquipContext';
 
 function CreateEquipment() {
 

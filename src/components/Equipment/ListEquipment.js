@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import EquipContext from '../context/Equipment/EquipContext'
+import EquipContext from '../../context/Equipment/EquipContext'
 
 function ListEquipment() {
 

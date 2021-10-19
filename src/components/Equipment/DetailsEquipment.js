@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import EquipContext from '../context/Equipment/EquipContext';
+import EquipContext from '../../context/Equipment/EquipContext';
 
 function DetailsEquipment(props) {
 

@@ -1,7 +1,7 @@
 
 // Estado Global
 import React, { useReducer } from "react";
-import axiosClient from "../../../config/axios";
+import axiosClient from "../../config/axios";
 
 import UsersContext from "./UsersContext";
 import UsersReducer from "./UsersReducer";

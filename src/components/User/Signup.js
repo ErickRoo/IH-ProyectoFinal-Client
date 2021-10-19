@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-import UsersContext from '../context/Users/UsersContext';
+import UsersContext from '../../context/Users/UsersContext';
 
 function Signup() {
   // Estado global
