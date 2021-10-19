@@ -4,7 +4,7 @@ import EquipContext from '../context/Equipment/EquipContext';
 
 function CreateEquipment() {
 
-  // Estado global
+  // Importar el contexto
   const ctxEquipment = useContext(EquipContext);
   // console.log(ctxEquipment);
   const { createEquipment } = ctxEquipment

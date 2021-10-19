@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
 import CartContext from '../context/Cart/CartContext';
 
 function Header() {
@@ -42,9 +44,9 @@ function Header() {
             </p>
 
             <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-              <a href="#" className="text-sm font-medium text-white hover:text-gray-100">Create an account</a>
+              <Link to="/crear-cuenta" className="text-sm font-medium text-white hover:text-gray-100">Create an account</Link>
               <span className="h-6 w-px bg-gray-600" aria-hidden="true"></span>
-              <a href="#" className="text-sm font-medium text-white hover:text-gray-100">Sign in</a>
+              <Link to="/iniciar-sesion" className="text-sm font-medium text-white hover:text-gray-100">Sign in</Link>
             </div>
           </div>
         </div>
@@ -250,7 +252,7 @@ function Header() {
                           {/* <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow --> */}
                           <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
 
-                          <div className="relative bg-white">
+                          {/* <div className="relative bg-white">
                             <div className="max-w-7xl mx-auto px-8">
                               <div className="grid grid-cols-2 items-start gap-y-10 gap-x-8 pt-10 pb-12">
                                 <div className="grid grid-cols-2 gap-y-10 gap-x-8">
@@ -386,7 +388,7 @@ function Header() {
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
 

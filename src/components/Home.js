@@ -1,5 +1,7 @@
-import React, { useContext } from 'react'
-import CartContext from './context/Cart/CartContext'
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+import CartContext from './context/Cart/CartContext';
 
 function Home() {
 
@@ -352,10 +354,10 @@ function Home() {
 
             <div className="border-t border-gray-200 py-6 px-4 space-y-6">
               <div className="flow-root">
-                <a href="#" className="-m-2 p-2 block font-medium text-gray-900">Create an account</a>
+                <Link to="/crear-cuenta" className="-m-2 p-2 block font-medium text-gray-900">Create an account</Link>
               </div>
               <div className="flow-root">
-                <a href="#" className="-m-2 p-2 block font-medium text-gray-900">Sign in</a>
+                <Link to="/iniciar-sesion" className="-m-2 p-2 block font-medium text-gray-900">Sign in</Link>
               </div>
             </div>
 
