@@ -23,8 +23,8 @@ const reducer = (globalState, action) => {
 
       return {
         ...globalState,
-        user: null,
-        authStatus: null,
+        user: "",
+        authStatus: "",
       }
 
 

@@ -23,13 +23,14 @@ const CartState = (props) => {
 
   // 3 -- Funciones API / conexión a REDUCERs (dispatch)
   const addProduct = async (product) => {
+    console.log(product);
 
     try {
-      dispatch({
+      // dispatch({
 
-        type: "SUMAR_PRODUCTO",
-        payload: product
-      });
+      //   type: "SUMAR_PRODUCTO",
+      //   payload: product
+      // });
 
     } catch (error) {
       console.log(`Hubo un error al añadir producto al carrito: ${error}`);

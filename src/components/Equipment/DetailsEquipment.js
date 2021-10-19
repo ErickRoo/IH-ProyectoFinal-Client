@@ -17,7 +17,7 @@ function DetailsEquipment(props) {
     return element._id === params;
   })
 
-  console.log(oneEquipment);
+  // console.log(oneEquipment);
 
   return (
     <div className="bg-white">

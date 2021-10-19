@@ -7,7 +7,7 @@ import {
 import UsersContext from "../../context/Users/UsersContext";
 
 const PublicRoute = ({ component: Component, ...props }) => {
-  console.log(props);
+  // console.log(props);
 
   // Importando el contexto
   const ctxUser = useContext(UsersContext);

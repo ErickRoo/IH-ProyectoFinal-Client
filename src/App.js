@@ -15,7 +15,7 @@ import Profile from "./components/User/Profile";
 import Signup from "./components/User/Signup";
 import Login from "./components/User/Login";
 
-// Rutas públicas
+// Components para las rutas
 import Home from './components/Home';
 import Buy from "./components/Purchase/Buy";
 import Rent from "./components/Purchase/Rent";
@@ -23,6 +23,7 @@ import ListEquipment from "./components/Equipment/ListEquipment";
 import DetailsEquipment from "./components/Equipment/DetailsEquipment";
 import Header from "./components/Layout/Header";
 import CreateEquipment from "./components/Equipment/CreateEquipment";
+import Error404 from "./components/Error404";
 
 // Contextos
 import CartState from "./context/Cart/CartState";
@@ -64,6 +65,8 @@ function App() {
                   <PublicRoute exact path="/" component={Home} />
                   <PublicRoute exact path="/lista-equipos" component={ListEquipment} />
                   <PublicRoute exact path="/detalles-equipo/:idEquipo" component={DetailsEquipment} />
+
+                  <Route path="*" component={Error404} />
 
                 </Switch>
               </Router>

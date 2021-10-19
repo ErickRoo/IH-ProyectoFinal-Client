@@ -2,11 +2,19 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import CartContext from '../../context/Cart/CartContext';
+import UsersContext from '../../context/Users/UsersContext';
+
+import eesLogo from "../../assets/logo.png"
 
 function Header() {
 
   const ctxCart = useContext(CartContext);
   const { itemCount } = ctxCart.cart;
+
+  const ctxUser = useContext(UsersContext);
+  const { user,
+    authStatus,
+    logoutUser } = ctxUser;
 
   return (
     <header className="relative z-10">
@@ -20,15 +28,10 @@ function Header() {
                 <label htmlFor="desktop-currency" className="sr-only">Currency</label>
                 <div className="-ml-2 group relative bg-gray-900 border-transparent rounded-md focus-within:ring-2 focus-within:ring-white">
                   <select id="desktop-currency" name="currency" className="bg-none bg-gray-900 border-transparent rounded-md py-0.5 pl-2 pr-5 flex items-center text-sm font-medium text-white group-hover:text-gray-100 focus:outline-none focus:ring-0 focus:border-transparent">
-                    <option>CAD</option>
+                    <option>MXN</option>
 
                     <option>USD</option>
 
-                    <option>AUD</option>
-
-                    <option>EUR</option>
-
-                    <option>GBP</option>
                   </select>
                   <div className="absolute right-0 inset-y-0 flex items-center pointer-events-none">
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" className="w-5 h-5 text-gray-300">
@@ -43,11 +46,22 @@ function Header() {
               Get free delivery on orders over $100
             </p>
 
-            <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-              <Link to="/crear-cuenta" className="text-sm font-medium text-white hover:text-gray-100">Create an account</Link>
-              <span className="h-6 w-px bg-gray-600" aria-hidden="true"></span>
-              <Link to="/iniciar-sesion" className="text-sm font-medium text-white hover:text-gray-100">Sign in</Link>
-            </div>
+            {
+              authStatus ?
+                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                  <Link to="/" className="text-sm font-medium text-white hover:text-gray-100">Hola {user.username}</Link>
+                  <span className="h-6 w-px bg-gray-600" aria-hidden="true"></span>
+                  <Link to="/" onClick={() => { logoutUser() }} className="text-sm font-medium text-white hover:text-gray-100">Cerrar sesión</Link>
+                </div>
+                :
+                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                  <Link to="/crear-cuenta" className="text-sm font-medium text-white hover:text-gray-100">Create an account</Link>
+                  <span className="h-6 w-px bg-gray-600" aria-hidden="true"></span>
+                  <Link to="/iniciar-sesion" className="text-sm font-medium text-white hover:text-gray-100">Sign in</Link>
+                </div>
+
+            }
+
           </div>
         </div>
 
@@ -58,10 +72,10 @@ function Header() {
               <div className="h-16 flex items-center justify-between">
                 {/* <!-- Logo (lg+) --> */}
                 <div className="hidden lg:flex lg:items-center">
-                  <a href="#">
+                  <Link to="/">
                     <span className="sr-only">Workflow</span>
-                    <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="" />
-                  </a>
+                    <img className="h-8 w-auto" src={eesLogo} alt="" />
+                  </Link>
                 </div>
 
                 <div className="hidden h-full lg:flex">
@@ -392,9 +406,25 @@ function Header() {
                         </div>
                       </div>
 
-                      <a href="#" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Company</a>
+                      <Link to="/lista-equipos" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Equipos</Link>
 
-                      <a href="#" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Stores</a>
+                      {
+                        (authStatus && (user.rol === 0)) ?
+                          <Link to="/crear-equipos" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Crear Equipo</Link>
+                          :
+                          (authStatus && (user.rol === 1)) ?
+                            <>
+                              <Link to="/mis-compras" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Mis Compras</Link>
+
+                              <Link to="/mis-rentas" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Mis Rentas</Link>
+
+                              <Link to="/servicios" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Servicios</Link>
+                            </>
+                            :
+                            null
+                      }
+
+
                     </div>
                   </div>
                 </div>
@@ -440,13 +470,25 @@ function Header() {
                       </div>
 
                       <div className="flex">
-                        <a href="#" className="-m-2 p-2 text-gray-400 hover:text-gray-500">
-                          <span className="sr-only">Account</span>
-                          {/* <!-- Heroicon name: outline/user --> */}
-                          <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                          </svg>
-                        </a>
+                        {
+                          authStatus ?
+                            <Link to="/perfil" className="-m-2 p-2 text-gray-400 hover:text-gray-500">
+                              <span className="sr-only">Account</span>
+                              {/* <!-- Heroicon name: outline/user --> */}
+                              <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                              </svg>
+                            </Link>
+                            :
+                            <Link to="/iniciar-sesion" className="-m-2 p-2 text-gray-400 hover:text-gray-500">
+                              <span className="sr-only">Account</span>
+                              {/* <!-- Heroicon name: outline/user --> */}
+                              <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                              </svg>
+                            </Link>
+
+                        }
                       </div>
                     </div>
 

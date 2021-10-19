@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 
 import UsersContext from '../../context/Users/UsersContext';
 
+import eesLogo from "../../assets/logo.png";
+
 function Login() {
   // Importar el contexto
   const ctxUser = useContext(UsersContext);
@@ -33,7 +35,7 @@ function Login() {
     <>
       <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <img className="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
+          <img className="mx-auto h-12 w-auto" src={eesLogo} alt="Workflow" />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Iniciar sesión
           </h2>
