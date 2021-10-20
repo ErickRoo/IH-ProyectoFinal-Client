@@ -15,7 +15,7 @@ function ListEquipment() {
   const { cart, addProduct } = ctxCart;
 
   const ctxUser = useContext(UsersContext);
-
+  const { user, authStatus } = ctxUser;
 
   useEffect(() => {
 

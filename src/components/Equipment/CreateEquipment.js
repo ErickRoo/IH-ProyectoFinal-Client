@@ -18,6 +18,7 @@ function CreateEquipment() {
     lastCalibrated: "",
     description: "",
     category: "",
+    price: 0,
   })
 
   // Funciones de estado local
@@ -40,6 +41,7 @@ function CreateEquipment() {
       name: "",
       model: "",
       serialNum: 0,
+      price: 0,
       calibrated: false,
       lastCalibrated: "",
       description: "",
@@ -111,7 +113,21 @@ function CreateEquipment() {
                           value={newEquipment.serialNum}
                           name="serialNum"
                           onChange={(e) => { handleInputs(e) }} className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"
+                        />
+                      </div>
+                    </div>
 
+                    <div className="sm:col-span-3">
+                      <label for="create-serialNum" className="block text-sm font-medium text-gray-700">
+                        Precio:
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          id="create-serialNum"
+                          type="number"
+                          value={newEquipment.price}
+                          name="price"
+                          onChange={(e) => { handleInputs(e) }} className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"
                         />
                       </div>
                     </div>

@@ -49,6 +49,16 @@ const EquipState = (props) => {
     }
   }
 
+  // EDITAR equipo
+  const editEquipment = async (dataForm) => {
+
+    try {
+      await axiosClient.put("/api/equipment/edit-equipment", dataForm)
+    } catch (error) {
+      console.log(`Hubo un error al editar el producto: ${error}`);
+    }
+  }
+
   // 4 -- Retorno - Envío de datos a los componentes
   return (
     <EquipContext.Provider
@@ -56,6 +66,7 @@ const EquipState = (props) => {
         equipment: globalState.equipment,
         getAllEquipment,
         createEquipment,
+        editEquipment,
       }}
     >
       {props.children}
