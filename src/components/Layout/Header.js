@@ -5,6 +5,7 @@ import CartContext from '../../context/Cart/CartContext';
 import UsersContext from '../../context/Users/UsersContext';
 
 import eesLogo from "../../assets/logo.png"
+import eesMainLogo from "../../assets/EES-LOGO.png"
 
 function Header() {
 
@@ -451,10 +452,10 @@ function Header() {
                 </div>
 
                 {/* <!-- Logo (lg-) --> */}
-                <a href="#" className="lg:hidden">
+                <Link to="/" className="lg:hidden">
                   <span className="sr-only">Workflow</span>
-                  <img src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt="" className="h-8 w-auto" />
-                </a>
+                  <img src={eesMainLogo} alt="" className="h-8 w-auto" />
+                </Link>
 
                 <div className="flex-1 flex items-center justify-end">
                   <div className="flex items-center lg:ml-8">

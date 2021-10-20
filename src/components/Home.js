@@ -28,7 +28,7 @@ function Home() {
         From: "opacity-100"
         To: "opacity-0"
     --> */}
-          <div className="fixed inset-0 bg-black bg-opacity-25" aria-hidden="true"></div>
+          {/* <div className="fixed inset-0 bg-black bg-opacity-25" aria-hidden="true"></div> */}
 
           {/* <!--
       Off-canvas menu, show/hide based on off-canvas menu state.
@@ -40,34 +40,34 @@ function Home() {
         From: "translate-x-0"
         To: "-translate-x-full"
     --> */}
-          <div className="relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto">
+          {/* <div className="relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto">
             <div className="px-4 pt-5 pb-2 flex">
               <button type="button" className="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-400">
                 <span className="sr-only">Close menu</span>
-                {/* <!-- Heroicon name: outline/x --> */}
+                <!-- Heroicon name: outline/x --> 
                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
-            {/* <!-- Links --> */}
+            <!-- Links --> 
             <div className="mt-2">
               <div className="border-b border-gray-200">
                 <div className="-mb-px flex px-4 space-x-8" aria-orientation="horizontal" role="tablist">
-                  {/* <!-- Selected: "text-indigo-600 border-indigo-600", Not Selected: "text-gray-900 border-transparent" --> */}
+                  <!-- Selected: "text-indigo-600 border-indigo-600", Not Selected: "text-gray-900 border-transparent" -->
                   <button id="tabs-1-tab-1" className="text-gray-900 border-transparent flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium" aria-controls="tabs-1-panel-1" role="tab" type="button">
                     Women
                   </button>
 
-                  {/* <!-- Selected: "text-indigo-600 border-indigo-600", Not Selected: "text-gray-900 border-transparent" --> */}
+                   <!-- Selected: "text-indigo-600 border-indigo-600", Not Selected: "text-gray-900 border-transparent" --> 
                   <button id="tabs-1-tab-2" className="text-gray-900 border-transparent flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium" aria-controls="tabs-1-panel-2" role="tab" type="button">
                     Men
                   </button>
                 </div>
               </div>
 
-              {/* <!-- 'Women' tab panel, show/hide based on tab state. --> */}
+               <!-- 'Women' tab panel, show/hide based on tab state. --> 
               <div id="tabs-1-panel-1" className="px-4 pt-10 pb-6 space-y-12" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex="0">
                 <div className="grid grid-cols-1 items-start gap-y-10 gap-x-6">
                   <div className="grid grid-cols-1 gap-y-10 gap-x-6">
@@ -204,7 +204,7 @@ function Home() {
                 </div>
               </div>
 
-              {/* <!-- 'Men' tab panel, show/hide based on tab state. --> */}
+              <!-- 'Men' tab panel, show/hide based on tab state. --> 
               <div id="tabs-1-panel-2" className="px-4 pt-10 pb-6 space-y-12" aria-labelledby="tabs-1-tab-2" role="tabpanel" tabIndex="0">
                 <div className="grid grid-cols-1 items-start gap-y-10 gap-x-6">
                   <div className="grid grid-cols-1 gap-y-10 gap-x-6">
@@ -362,7 +362,7 @@ function Home() {
             </div>
 
             <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-              {/* <!-- Currency selector --> */}
+               <!-- Currency selector --> 
               <form>
                 <div className="inline-block">
                   <label htmlFor="mobile-currency" className="sr-only">Currency</label>
@@ -387,7 +387,7 @@ function Home() {
                 </div>
               </form>
             </div>
-          </div>
+          </div> */}
         </div>
 
 
