@@ -4,7 +4,7 @@ export const sumItems = (cartItems) => {
       return total + prod.quantity
     }, 0),
     total: cartItems.reduce((total, prod) => {
-      return (total + (prod.price * prod.quiantity))
+      return (total + (prod.price * prod.quantity))
     }, 0)
   })
 }
@@ -12,7 +12,7 @@ const reducer = (globalState, action) => {
 
   switch (action.type) {
     case "SUMAR_PRODUCTO":
-      if (!globalState.cartItems.find(item => item.id === action.payload.id)) {
+      if (!globalState.cartItems.find(item => item._id === action.payload._id)) {
         globalState.cartItems.push(
           {
             ...action.payload,

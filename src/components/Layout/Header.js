@@ -82,9 +82,9 @@ function Header() {
                   {/* <!-- Mega menus --> */}
                   <div className="ml-8">
                     <div className="h-full flex justify-center space-x-8">
-                      <div className="flex">
+                      {/* <div className="flex">
                         <div className="relative flex">
-                          {/* <!-- Item active: "border-indigo-600 text-indigo-600", Item inactive: "border-transparent text-gray-700 hover:text-gray-800" --> */}
+                          <!-- Item active: "border-indigo-600 text-indigo-600", Item inactive: "border-transparent text-gray-700 hover:text-gray-800" -->
                           <button type="button" className="border-transparent text-gray-700 hover:text-gray-800 relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px" aria-expanded="false">
                             Women
                           </button>
@@ -99,12 +99,12 @@ function Header() {
                         Leaving: "transition ease-in duration-150"
                           From: "opacity-100"
                           To: "opacity-0"
-                      --> */}
+                      --> 
                         <div className="absolute top-full inset-x-0 text-gray-500 sm:text-sm">
-                          {/* <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow --> */}
+                           <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow --> 
                           <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
 
-                          {/* <div className="relative bg-white">
+                          <div className="relative bg-white">
                             <div className="max-w-7xl mx-auto px-8">
                               <div className="grid grid-cols-2 items-start gap-y-10 gap-x-8 pt-10 pb-12">
                                 <div className="grid grid-cols-2 gap-y-10 gap-x-8">
@@ -240,19 +240,19 @@ function Header() {
                                 </div>
                               </div>
                             </div>
-                          </div> */}
+                          </div> 
                         </div>
-                      </div>
+                      </div> */}
 
-                      <div className="flex">
+                      {/* <div className="flex">
                         <div className="relative flex">
-                          {/* <!-- Item active: "border-indigo-600 text-indigo-600", Item inactive: "border-transparent text-gray-700 hover:text-gray-800" --> */}
+                          <!-- Item active: "border-indigo-600 text-indigo-600", Item inactive: "border-transparent text-gray-700 hover:text-gray-800" -->
                           <button type="button" className="border-transparent text-gray-700 hover:text-gray-800 relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px" aria-expanded="false">
                             Men
                           </button>
                         </div>
 
-                        {/* <!--
+                        <!--
                         'Men' mega menu, show/hide based on flyout menu state.
 
                         Entering: "transition ease-out duration-200"
@@ -261,12 +261,12 @@ function Header() {
                         Leaving: "transition ease-in duration-150"
                           From: "opacity-100"
                           To: "opacity-0"
-                      --> */}
+                      -->
                         <div className="absolute top-full inset-x-0 text-gray-500 sm:text-sm">
-                          {/* <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow --> */}
+                           <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow --> 
                           <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
 
-                          {/* <div className="relative bg-white">
+                          <div className="relative bg-white">
                             <div className="max-w-7xl mx-auto px-8">
                               <div className="grid grid-cols-2 items-start gap-y-10 gap-x-8 pt-10 pb-12">
                                 <div className="grid grid-cols-2 gap-y-10 gap-x-8">
@@ -402,9 +402,9 @@ function Header() {
                                 </div>
                               </div>
                             </div>
-                          </div> */}
+                          </div> 
                         </div>
-                      </div>
+                      </div> */}
 
                       <Link to="/lista-equipos" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Equipos</Link>
 
@@ -495,14 +495,21 @@ function Header() {
                     <span className="mx-4 h-6 w-px bg-gray-200 lg:mx-6" aria-hidden="true"></span>
 
                     <div className="flow-root">
-                      <a href="#" className="group -m-2 p-2 flex items-center">
+                      <Link to="/form-compra" className="group -m-2 p-2 flex items-center">
                         {/* <!-- Heroicon name: outline/shopping-cart --> */}
                         <svg className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{itemCount}</span>
-                        <span className="sr-only">items in cart, view bag</span>
-                      </a>
+                        {
+                          itemCount > 0 ?
+                            <>
+                              <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{itemCount}</span>
+                              <span className="sr-only">items in cart, view bag</span>
+                            </>
+                            :
+                            null
+                        }
+                      </Link>
                     </div>
                   </div>
                 </div>

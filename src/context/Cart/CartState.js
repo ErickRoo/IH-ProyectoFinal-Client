@@ -26,11 +26,11 @@ const CartState = (props) => {
     console.log(product);
 
     try {
-      // dispatch({
+      dispatch({
 
-      //   type: "SUMAR_PRODUCTO",
-      //   payload: product
-      // });
+        type: "SUMAR_PRODUCTO",
+        payload: product
+      });
 
     } catch (error) {
       console.log(`Hubo un error al añadir producto al carrito: ${error}`);

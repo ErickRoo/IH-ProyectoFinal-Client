@@ -1,5 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
+
 import EquipContext from '../../context/Equipment/EquipContext';
+import CartContext from '../../context/Cart/CartContext';
+import UsersContext from "../../context/Users/UsersContext"
 
 function DetailsEquipment(props) {
 
@@ -7,17 +10,23 @@ function DetailsEquipment(props) {
 
   // Importar el contexto
   const ctxEquipment = useContext(EquipContext);
-  const { equipment, getAllEquipment } = ctxEquipment;
+  const { equipment } = ctxEquipment;
 
-  useEffect(() => {
-    getAllEquipment();
-  }, []);
+  const ctxCart = useContext(CartContext);
+  const { cart, addProduct } = ctxCart;
+
+  const ctxUser = useContext(UsersContext);
+  const { user, authStatus } = ctxUser;
 
   const oneEquipment = equipment.find(element => {
     return element._id === params;
   })
 
-  // console.log(oneEquipment);
+  const auxAddProduct = (event) => {
+    event.preventDefault();
+
+    addProduct(oneEquipment);
+  }
 
   return (
     <div className="bg-white">
@@ -54,102 +63,69 @@ function DetailsEquipment(props) {
           </div>
 
           {/* <!-- Product info --> */}
-          <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-            <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">{oneEquipment.name}</h1>
 
-            <div className="mt-3">
-              <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl text-gray-900">${oneEquipment.price}</p>
-            </div>
+          {
+            (authStatus && (user.rol === 1)) ?
+              <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
+                <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">{oneEquipment.name}</h1>
 
-            {/* <!-- Reviews --> */}
-            <div className="mt-3">
-              <h3 className="sr-only">Reviews</h3>
-              <div className="flex items-center">
-                <div className="flex items-center">
-                  {/* <!--
-                Heroicon name: solid/star
-
-                Active: "text-indigo-500", Inactive: "text-gray-300"
-              --> */}
-                  <svg className="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-
-                  {/* <!-- Heroicon name: solid/star --> */}
-                  <svg className="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-
-                  {/* <!-- Heroicon name: solid/star --> */}
-                  <svg className="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-
-                  {/* <!-- Heroicon name: solid/star --> */}
-                  <svg className="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-
-                  {/* <!-- Heroicon name: solid/star --> */}
-                  <svg className="h-5 w-5 flex-shrink-0 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
+                <div className="mt-3">
+                  <h2 className="sr-only">Product information</h2>
+                  <p className="text-3xl text-gray-900">${oneEquipment.price}</p>
                 </div>
-                <p className="sr-only">4 out of 5 stars</p>
-              </div>
-            </div>
 
-            <div className="mt-6">
-              <h3 className="sr-only">Description</h3>
+                {/* <!-- Reviews --> */}
 
-              <div className="text-base text-gray-700 space-y-6">
-                <p>{oneEquipment.description}</p>
-              </div>
-            </div>
+                <div className="mt-6">
+                  <h3 className="sr-only">Description</h3>
 
-            <form className="mt-6">
-              {/* <!-- Colors --> */}
+                  <div className="text-base text-gray-700 space-y-6">
+                    <p>{oneEquipment.description}</p>
+                  </div>
+                </div>
 
-              <div className="mt-10 flex sm:flex-col1">
-                <button type="submit" className="max-w-xs flex-1 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full">Add to cart</button>
+                <form className="mt-6">
+                  {/* <!-- Colors --> */}
 
-                <button type="button" className="ml-4 py-3 px-3 rounded-md flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500">
-                  {/* <!-- Heroicon name: outline/heart --> */}
-                  <svg className="h-6 w-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                  <span className="sr-only">Add to favorites</span>
-                </button>
-              </div>
-            </form>
+                  <div className="mt-10 flex sm:flex-col1">
+                    <button onClick={(event) => { auxAddProduct(event) }} className="max-w-xs flex-1 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full">Add to cart</button>
 
-            <section aria-labelledby="details-heading" className="mt-12">
+                    <button type="button" className="ml-4 py-3 px-3 rounded-md flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500">
+                      {/* <!-- Heroicon name: outline/heart --> */}
+                      <svg className="h-6 w-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      </svg>
+                      <span className="sr-only">Add to favorites</span>
+                    </button>
+                  </div>
+                </form>
+
+                {/* <section aria-labelledby="details-heading" className="mt-12">
               <h2 id="details-heading" className="sr-only">Additional details</h2>
 
               <div className="border-t divide-y divide-gray-200">
                 <div>
                   <h3>
-                    {/* <!-- Expand/collapse question button --> */}
+                    <!-- Expand/collapse question button -->
                     <button type="button" className="group relative w-full py-6 flex justify-between items-center text-left" aria-controls="disclosure-1" aria-expanded="false">
-                      {/* <!-- Open: "text-indigo-600", Closed: "text-gray-900" --> */}
+                      <!-- Open: "text-indigo-600", Closed: "text-gray-900" -->
                       <span className="text-gray-900 text-sm font-medium">
                         Features
                       </span>
                       <span className="ml-6 flex items-center">
-                        {/* <!--
+                        <!--
                       Heroicon name: outline/plus-sm
 
                       Open: "hidden", Closed: "block"
-                    --> */}
+                    -->
                         <svg className="block h-6 w-6 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
-                        {/* <!--
+                        <!--
                       Heroicon name: outline/minus-sm
 
                       Open: "block", Closed: "hidden"
-                    --> */}
+                    --> 
                         <svg className="hidden h-6 w-6 text-indigo-400 group-hover:text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 12H6" />
                         </svg>
@@ -175,10 +151,119 @@ function DetailsEquipment(props) {
                   </div>
                 </div>
 
-                {/* <!-- More sections... --> */}
+                <!-- More sections... -->
               </div>
-            </section>
-          </div>
+            </section> */}
+              </div>
+
+              :
+              (authStatus && (user.rol === 0)) ?
+                <>
+                  <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
+                    <div className="sm:col-span-3">
+                      <label for="create-name" className="block text-sm font-medium text-gray-700" >
+                        Nombre del equipo.
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          id="create-name"
+                          type="text"
+                          name="name"
+                          className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"
+                        />
+                      </div>
+                    </div>
+
+                    <form className="mt-6">
+                      <div className="mt-3">
+                        <h2 className="sr-only">Product information</h2>
+                        <p className="text-3xl text-gray-900">${oneEquipment.price}</p>
+                      </div>
+
+                      {/* <!-- Reviews --> */}
+
+                      <div className="mt-6">
+                        <h3 className="sr-only">Description</h3>
+
+                        <div className="text-base text-gray-700 space-y-6">
+                          <p>{oneEquipment.description}</p>
+                        </div>
+                      </div>
+
+                      {/* <!-- Colors --> */}
+
+                      <div className="mt-10 flex sm:flex-col1">
+                        <button onClick={(event) => { auxAddProduct(event) }} className="max-w-xs flex-1 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full">Add to cart</button>
+
+                        <button type="button" className="ml-4 py-3 px-3 rounded-md flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500">
+                          {/* <!-- Heroicon name: outline/heart --> */}
+                          <svg className="h-6 w-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                          </svg>
+                          <span className="sr-only">Add to favorites</span>
+                        </button>
+                      </div>
+                    </form>
+
+                    {/* <section aria-labelledby="details-heading" className="mt-12">
+              <h2 id="details-heading" className="sr-only">Additional details</h2>
+
+              <div className="border-t divide-y divide-gray-200">
+                <div>
+                  <h3>
+                    <!-- Expand/collapse question button -->
+                    <button type="button" className="group relative w-full py-6 flex justify-between items-center text-left" aria-controls="disclosure-1" aria-expanded="false">
+                      <!-- Open: "text-indigo-600", Closed: "text-gray-900" -->
+                      <span className="text-gray-900 text-sm font-medium">
+                        Features
+                      </span>
+                      <span className="ml-6 flex items-center">
+                        <!--
+                      Heroicon name: outline/plus-sm
+
+                      Open: "hidden", Closed: "block"
+                    -->
+                        <svg className="block h-6 w-6 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                        <!--
+                      Heroicon name: outline/minus-sm
+
+                      Open: "block", Closed: "hidden"
+                    --> 
+                        <svg className="hidden h-6 w-6 text-indigo-400 group-hover:text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 12H6" />
+                        </svg>
+                      </span>
+                    </button>
+                  </h3>
+                  <div className="pb-6 prose prose-sm" id="disclosure-1">
+                    <ul role="list">
+                      <li>Multiple strap configurations</li>
+
+                      <li>Spacious interior with top zip</li>
+
+                      <li>Leather handle and tabs</li>
+
+                      <li>Interior dividers</li>
+
+                      <li>Stainless strap loops</li>
+
+                      <li>Double stitched construction</li>
+
+                      <li>Water-resistant</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- More sections... -->
+              </div>
+            </section> */}
+                  </div>
+                </>
+                :
+                null
+          }
         </div>
       </div>
     </div>

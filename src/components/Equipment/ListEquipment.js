@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import EquipContext from '../../context/Equipment/EquipContext';
 import CartContext from '../../context/Cart/CartContext';
+import UsersContext from '../../context/Users/UsersContext';
 
 function ListEquipment() {
 
@@ -12,7 +13,9 @@ function ListEquipment() {
 
   const ctxCart = useContext(CartContext);
   const { cart, addProduct } = ctxCart;
-  console.log(cart);
+
+  const ctxUser = useContext(UsersContext);
+
 
   useEffect(() => {
 
@@ -21,6 +24,12 @@ function ListEquipment() {
   }, []);
 
   // console.log(equipment);
+
+  const auxAddProduct = (event, e) => {
+    event.preventDefault();
+
+    addProduct(e);
+  }
 
   return (
     <div className="bg-white">
@@ -46,12 +55,12 @@ function ListEquipment() {
                     </div>
                     <div className="absolute top-0 inset-x-0 h-72 rounded-lg p-4 flex items-end justify-end overflow-hidden">
                       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"></div>
-                      <p className="relative text-lg font-semibold text-white">${e.serialNum}</p>
+                      <p className="relative text-lg font-semibold text-white">${e.price}</p>
                     </div>
                   </Link>
                 </div>
                 <div className="mt-6">
-                  <a href="#" onClick={() => { addProduct(e) }} className="relative flex bg-gray-100 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-200">Add to Cart<span className="sr-only">, {e.name}</span></a>
+                  <button onClick={(event) => { auxAddProduct(event, e) }} className="relative flex bg-gray-100 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-200 sm:w-full">Add to Cart<span className="sr-only">, {e.name}</span></button>
                 </div>
               </div>
             )

@@ -17,6 +17,7 @@ const EquipState = (props) => {
   const [globalState, dispatch] = useReducer(EquipReducer, initialState);
 
   // 3 -- Funciones API / conexión a reducers (dispatch)
+  // OBTENER equipos
   const getAllEquipment = async () => {
 
     try {
@@ -35,6 +36,7 @@ const EquipState = (props) => {
     }
   }
 
+  //CREAR equipo
   const createEquipment = async (dataForm) => {
 
     try {

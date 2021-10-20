@@ -29,6 +29,7 @@ import Error404 from "./components/Error404";
 import CartState from "./context/Cart/CartState";
 import EquipState from "./context/Equipment/EquipState";
 import UsersState from "./context/Users/UsersState";
+import OrdersState from "./context/Orders/OrdersState";
 
 //Middlewares de Routes
 import AuthRoute from "./components/Routes/AuthRoute";
@@ -44,33 +45,35 @@ function App() {
         <CartState>
           <EquipState>
             <UsersState>
+              <OrdersState>
 
-              <Router>
+                <Router>
 
-                <Header />
-                <Switch>
+                  <Header />
+                  <Switch>
 
-                  {/* RUTAS PRIVADAS */}
-                  <PrivateRoute exact path="/perfil" component={Profile} />
-                  <PrivateRoute exact path="/form-compra" component={Buy} />
-                  <PrivateRoute exact path="/form-renta" component={Rent} />
-                  <PrivateRoute exact path="/crear-equipos" component={CreateEquipment} />
+                    {/* RUTAS PRIVADAS */}
+                    <PrivateRoute exact path="/perfil" component={Profile} />
+                    <PrivateRoute exact path="/form-compra" component={Buy} />
+                    <PrivateRoute exact path="/form-renta" component={Rent} />
+                    <PrivateRoute exact path="/crear-equipos" component={CreateEquipment} />
 
 
-                  {/* RUTAS DE AUTENTICACIÓN */}
-                  <AuthRoute exact path="/iniciar-sesion" component={Login} />
-                  <AuthRoute exact path="/crear-cuenta" component={Signup} />
+                    {/* RUTAS DE AUTENTICACIÓN */}
+                    <AuthRoute exact path="/iniciar-sesion" component={Login} />
+                    <AuthRoute exact path="/crear-cuenta" component={Signup} />
 
-                  {/* RUTAS PUBLICAS */}
-                  <PublicRoute exact path="/" component={Home} />
-                  <PublicRoute exact path="/lista-equipos" component={ListEquipment} />
-                  <PublicRoute exact path="/detalles-equipo/:idEquipo" component={DetailsEquipment} />
+                    {/* RUTAS PUBLICAS */}
+                    <PublicRoute exact path="/" component={Home} />
+                    <PublicRoute exact path="/lista-equipos" component={ListEquipment} />
+                    <PublicRoute exact path="/detalles-equipo/:idEquipo" component={DetailsEquipment} />
 
-                  <Route path="*" component={Error404} />
+                    <Route path="*" component={Error404} />
 
-                </Switch>
-              </Router>
+                  </Switch>
+                </Router>
 
+              </OrdersState>
             </UsersState>
           </EquipState>
         </CartState>
