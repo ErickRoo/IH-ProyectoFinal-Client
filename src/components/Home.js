@@ -17,8 +17,8 @@ function Home() {
 
     Off-canvas menu for mobile, show/hide based on off-canvas menu state.
   --> */}
-        <div className="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
-          {/* <!--
+        {/* <div className="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
+          <!--
       Off-canvas menu overlay, show/hide based on off-canvas menu state.
 
       Entering: "transition-opacity ease-linear duration-300"
@@ -28,9 +28,9 @@ function Home() {
         From: "opacity-100"
         To: "opacity-0"
     --> */}
-          {/* <div className="fixed inset-0 bg-black bg-opacity-25" aria-hidden="true"></div> */}
+        {/* <div className="fixed inset-0 bg-black bg-opacity-25" aria-hidden="true"></div> */}
 
-          {/* <!--
+        {/* <!--
       Off-canvas menu, show/hide based on off-canvas menu state.
 
       Entering: "transition ease-in-out duration-300 transform"
@@ -40,7 +40,7 @@ function Home() {
         From: "translate-x-0"
         To: "-translate-x-full"
     --> */}
-          {/* <div className="relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto">
+        {/* <div className="relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto">
             <div className="px-4 pt-5 pb-2 flex">
               <button type="button" className="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-400">
                 <span className="sr-only">Close menu</span>
@@ -387,8 +387,8 @@ function Home() {
                 </div>
               </form>
             </div>
-          </div> */}
-        </div>
+          </div>
+        </div> */}
 
 
 
