@@ -44,22 +44,49 @@ function Header() {
             </form>
 
             <p className="flex-1 text-center text-sm font-medium text-white lg:flex-none">
-              Get free delivery on orders over $100
+              Envío gratis en tu primera compra.
             </p>
 
             {
               authStatus ?
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <Link to="/" className="text-sm font-medium text-white hover:text-gray-100">Hola {user.username}</Link>
-                  <span className="h-6 w-px bg-gray-600" aria-hidden="true"></span>
-                  <Link to="/" onClick={() => { logoutUser() }} className="text-sm font-medium text-white hover:text-gray-100">Cerrar sesión</Link>
-                </div>
+                <>
+                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                    <Link to="/" className="text-sm font-medium text-white hover:text-gray-100">Hola {user.username}</Link>
+                    <span className="h-6 w-px bg-gray-600" aria-hidden="true"></span>
+                    <Link to="/" onClick={() => { logoutUser() }} className="text-sm font-medium text-white hover:text-gray-100">Cerrar sesión</Link>
+                  </div>
+
+                  <div className="lg:hidden flex flex-1 items-center justify-end space-x-6">
+                    <Link to="/" className="text-sm font-medium text-white hover:text-gray-100">Hola {user.username}</Link>
+                    <span className="h-6 w-px bg-gray-600" aria-hidden="true"></span>
+                    <Link to="/" onClick={() => { logoutUser() }} className="text-sm font-medium text-white hover:text-gray-100">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                      </svg>
+                    </Link>
+                  </div>
+                </>
                 :
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <Link to="/crear-cuenta" className="text-sm font-medium text-white hover:text-gray-100">Create an account</Link>
-                  <span className="h-6 w-px bg-gray-600" aria-hidden="true"></span>
-                  <Link to="/iniciar-sesion" className="text-sm font-medium text-white hover:text-gray-100">Sign in</Link>
-                </div>
+                <>
+                  <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                    <Link to="/crear-cuenta" className="text-sm font-medium text-white hover:text-gray-100">Create an account</Link>
+                    <span className="h-6 w-px bg-gray-600" aria-hidden="true"></span>
+                    <Link to="/iniciar-sesion" className="text-sm font-medium text-white hover:text-gray-100">Sign in</Link>
+                  </div>
+
+                  <div className="lg:hidden flex flex-1 items-center justify-end space-x-6">
+                    <Link to="/crear-cuenta" className="text-sm font-medium text-white hover:text-gray-100"> Signup
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                      </svg>
+                    </Link>
+                    <span className="h-6 w-px bg-gray-600" aria-hidden="true"></span>
+                    <Link to="/iniciar-sesion" className="text-sm font-medium text-white hover:text-gray-100">Login
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                      </svg></Link>
+                  </div>
+                </>
 
             }
 
@@ -75,340 +102,15 @@ function Header() {
                 <div className="hidden lg:flex lg:items-center">
                   <Link to="/">
                     <span className="sr-only">Workflow</span>
-                    <img className="h-8 w-auto" src={eesLogo} alt="" />
+                    <img className="h-12 w-auto" src={eesMainLogo} alt="" />
                   </Link>
                 </div>
 
                 <div className="hidden h-full lg:flex">
                   {/* <!-- Mega menus --> */}
-                  <div className="ml-8">
+                  <div className="ml-8" x-data="Components.popoverGroup()" x-init="init()">
                     <div className="h-full flex justify-center space-x-8">
-                      {/* <div className="flex">
-                        <div className="relative flex">
-                          <!-- Item active: "border-indigo-600 text-indigo-600", Item inactive: "border-transparent text-gray-700 hover:text-gray-800" -->
-                          <button type="button" className="border-transparent text-gray-700 hover:text-gray-800 relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px" aria-expanded="false">
-                            Women
-                          </button>
-                        </div>
-
-                        {/* <!--
-                        'Women' mega menu, show/hide based on flyout menu state.
-
-                        Entering: "transition ease-out duration-200"
-                          From: "opacity-0"
-                          To: "opacity-100"
-                        Leaving: "transition ease-in duration-150"
-                          From: "opacity-100"
-                          To: "opacity-0"
-                      --> 
-                        <div className="absolute top-full inset-x-0 text-gray-500 sm:text-sm">
-                           <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow --> 
-                          <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
-
-                          <div className="relative bg-white">
-                            <div className="max-w-7xl mx-auto px-8">
-                              <div className="grid grid-cols-2 items-start gap-y-10 gap-x-8 pt-10 pb-12">
-                                <div className="grid grid-cols-2 gap-y-10 gap-x-8">
-                                  <div>
-                                    <p id="desktop-featured-heading-0" className="font-medium text-gray-900">
-                                      Featured
-                                    </p>
-                                    <ul role="list" aria-labelledby="desktop-featured-heading-0" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Sleep
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Swimwear
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Underwear
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                  <div>
-                                    <p id="desktop-categories-heading" className="font-medium text-gray-900">
-                                      Categories
-                                    </p>
-                                    <ul role="list" aria-labelledby="desktop-categories-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Basic Tees
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Artwork Tees
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Bottoms
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Underwear
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Accessories
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-y-10 gap-x-8">
-                                  <div>
-                                    <p id="desktop-collection-heading" className="font-medium text-gray-900">
-                                      Collection
-                                    </p>
-                                    <ul role="list" aria-labelledby="desktop-collection-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Everything
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Core
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          New Arrivals
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Sale
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-
-                                  <div>
-                                    <p id="desktop-brand-heading" className="font-medium text-gray-900">
-                                      Brands
-                                    </p>
-                                    <ul role="list" aria-labelledby="desktop-brand-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Full Nelson
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          My Way
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Re-Arranged
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Counterfeit
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Significant Other
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div> 
-                        </div>
-                      </div> */}
-
-                      {/* <div className="flex">
-                        <div className="relative flex">
-                          <!-- Item active: "border-indigo-600 text-indigo-600", Item inactive: "border-transparent text-gray-700 hover:text-gray-800" -->
-                          <button type="button" className="border-transparent text-gray-700 hover:text-gray-800 relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px" aria-expanded="false">
-                            Men
-                          </button>
-                        </div>
-
-                        <!--
-                        'Men' mega menu, show/hide based on flyout menu state.
-
-                        Entering: "transition ease-out duration-200"
-                          From: "opacity-0"
-                          To: "opacity-100"
-                        Leaving: "transition ease-in duration-150"
-                          From: "opacity-100"
-                          To: "opacity-0"
-                      -->
-                        <div className="absolute top-full inset-x-0 text-gray-500 sm:text-sm">
-                           <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow --> 
-                          <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
-
-                          <div className="relative bg-white">
-                            <div className="max-w-7xl mx-auto px-8">
-                              <div className="grid grid-cols-2 items-start gap-y-10 gap-x-8 pt-10 pb-12">
-                                <div className="grid grid-cols-2 gap-y-10 gap-x-8">
-                                  <div>
-                                    <p id="desktop-featured-heading-1" className="font-medium text-gray-900">
-                                      Featured
-                                    </p>
-                                    <ul role="list" aria-labelledby="desktop-featured-heading-1" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Casual
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Boxers
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Outdoor
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                  <div>
-                                    <p id="desktop-categories-heading" className="font-medium text-gray-900">
-                                      Categories
-                                    </p>
-                                    <ul role="list" aria-labelledby="desktop-categories-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Artwork Tees
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Pants
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Accessories
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Boxers
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Basic Tees
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-y-10 gap-x-8">
-                                  <div>
-                                    <p id="desktop-collection-heading" className="font-medium text-gray-900">
-                                      Collection
-                                    </p>
-                                    <ul role="list" aria-labelledby="desktop-collection-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Everything
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Core
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          New Arrivals
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Sale
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-
-                                  <div>
-                                    <p id="desktop-brand-heading" className="font-medium text-gray-900">
-                                      Brands
-                                    </p>
-                                    <ul role="list" aria-labelledby="desktop-brand-heading" className="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Significant Other
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          My Way
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Counterfeit
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Re-Arranged
-                                        </a>
-                                      </li>
-
-                                      <li className="flex">
-                                        <a href="#" className="hover:text-gray-800">
-                                          Full Nelson
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div> 
-                        </div>
-                      </div> */}
-
                       <Link to="/lista-equipos" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Equipos</Link>
-
                       {
                         (authStatus && (user.rol === 0)) ?
                           <Link to="/crear-equipos" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Crear Equipo</Link>
@@ -424,51 +126,19 @@ function Header() {
                             :
                             null
                       }
-
-
                     </div>
                   </div>
-                </div>
-
-                {/* <!-- Mobile menu and search (lg-) --> */}
-                <div className="flex-1 flex items-center lg:hidden">
-                  {/* <!-- Mobile menu toggle, controls the 'mobileMenuOpen' state. --> */}
-                  <button type="button" className="-ml-2 bg-white p-2 rounded-md text-gray-400">
-                    <span className="sr-only">Open menu</span>
-                    {/* <!-- Heroicon name: outline/menu --> */}
-                    <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                  </button>
-
-                  {/* <!-- Search --> */}
-                  <a href="#" className="ml-2 p-2 text-gray-400 hover:text-gray-500">
-                    <span className="sr-only">Search</span>
-                    {/* <!-- Heroicon name: outline/search --> */}
-                    <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </a>
                 </div>
 
                 {/* <!-- Logo (lg-) --> */}
                 <Link to="/" className="lg:hidden">
                   <span className="sr-only">Workflow</span>
-                  <img src={eesMainLogo} alt="" className="h-8 w-auto" />
+                  <img src={eesMainLogo} alt="" className="h-12 w-auto" />
                 </Link>
 
                 <div className="flex-1 flex items-center justify-end">
                   <div className="flex items-center lg:ml-8">
                     <div className="flex space-x-8">
-                      <div className="hidden lg:flex">
-                        <a href="#" className="-m-2 p-2 text-gray-400 hover:text-gray-500">
-                          <span className="sr-only">Search</span>
-                          {/* <!-- Heroicon name: outline/search --> */}
-                          <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                          </svg>
-                        </a>
-                      </div>
 
                       <div className="flex">
                         {
@@ -518,8 +188,8 @@ function Header() {
             </div>
           </div>
         </div>
-      </nav>
-    </header>
+      </nav >
+    </header >
   )
 }
 
