@@ -9,7 +9,7 @@ function ListEquipment() {
 
   // Importar el contexto
   const ctxEquipment = useContext(EquipContext);
-  const { equipment, getAllEquipment } = ctxEquipment;
+  const { equipment, getAllEquipment, deleteEquipment } = ctxEquipment;
 
   const ctxCart = useContext(CartContext);
   const { cart, addProduct } = ctxCart;
@@ -29,6 +29,11 @@ function ListEquipment() {
     event.preventDefault();
 
     addProduct(e);
+  }
+
+  const auxDeleteEquipment = (event, e) => {
+    event.preventDefault();
+    deleteEquipment({ id: e._id });
   }
 
   return (
@@ -60,7 +65,17 @@ function ListEquipment() {
                   </Link>
                 </div>
                 <div className="mt-6">
-                  <button onClick={(event) => { auxAddProduct(event, e) }} className="relative flex bg-gray-100 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-200 sm:w-full">Add to Cart<span className="sr-only">, {e.name}</span></button>
+                  {
+                    (user.rol === 1 && authStatus) ?
+                      <button onClick={(event) => { auxAddProduct(event, e) }} className="relative flex bg-gray-100 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-200 sm:w-full">Add to Cart<span className="sr-only">, {e.name}</span></button>
+                      :
+                      (user.rol === 0 && authStatus) ?
+                        <button type="submit" className="relative flex bg-red-400 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-semibold text-red-900 hover:bg-red-200 sm:w-full"
+                          onClick={(event) => { auxDeleteEquipment(event, e) }}
+                        >Eliminar<span className="sr-only">, {e.name}</span></button>
+                        :
+                        null
+                  }
                 </div>
               </div>
             )

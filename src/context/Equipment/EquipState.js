@@ -59,6 +59,20 @@ const EquipState = (props) => {
     }
   }
 
+  // BORRAR equipo
+
+  const deleteEquipment = async (id) => {
+    console.log(id);
+    try {
+      await axiosClient.delete("/api/equipment/delete-equipment", {
+        data: id
+      });
+      getAllEquipment();
+    } catch (error) {
+      console.log(`Hubo un error al borrar producto: ${error}`);
+    }
+  }
+
   // 4 -- Retorno - Envío de datos a los componentes
   return (
     <EquipContext.Provider
@@ -67,6 +81,7 @@ const EquipState = (props) => {
         getAllEquipment,
         createEquipment,
         editEquipment,
+        deleteEquipment,
       }}
     >
       {props.children}
