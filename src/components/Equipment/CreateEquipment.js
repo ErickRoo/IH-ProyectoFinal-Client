@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import React, { useState, useContext } from 'react';
 
 import EquipContext from '../../context/Equipment/EquipContext';
@@ -19,6 +21,7 @@ function CreateEquipment() {
     description: "",
     category: "",
     price: 0,
+    imageUrl: "",
   })
 
   // Funciones de estado local
@@ -46,8 +49,32 @@ function CreateEquipment() {
       lastCalibrated: "",
       description: "",
       category: "",
+      imageUrl: "",
     })
   }
+
+  // UPLOAD imagen
+  const uploadImage = async (imageInput) => {
+    const imagen = imageInput.target.files;
+    const formData = new FormData();
+    formData.append("file", imagen[0]);
+    formData.append("upload_preset", `${process.env.REACT_APP_UPLOAD_PRESET}`)
+
+    try {
+      const axiosCloudinary = await axios.post(`${process.env.REACT_APP_CLOUDINARY_URL_UPLOAD}`, formData)
+      console.log(axiosCloudinary);
+      const imageUrl = axiosCloudinary.data.secure_url;
+
+      setNewEquipment({
+        ...newEquipment,
+        imageUrl: imageUrl,
+      })
+
+    } catch (error) {
+      console.log(`Hubo un error al cargar imagen: ${error}`);
+    }
+  }
+
 
 
   return (
@@ -198,6 +225,21 @@ function CreateEquipment() {
                           name="description"
                           onChange={(e) => { handleInputs(e) }}
                           className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"></textarea>
+                      </div>
+                    </div>
+
+                    <div className="sm:col-span-6">
+                      <label for="create-imagen" className="block text-sm font-medium text-gray-700">
+                        Imagen
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          id="create-imagen"
+                          type="file"
+                          value={newEquipment.imagenUrl}
+                          name="imageUrl"
+                          onChange={(e) => { uploadImage(e) }}
+                          className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"></input>
                       </div>
                     </div>
 

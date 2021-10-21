@@ -51,7 +51,7 @@ function ListEquipment() {
                 <div className="relative">
                   <Link to={`/detalles-equipo/${e._id}`}>
                     <div className="relative w-full h-72 rounded-lg overflow-hidden">
-                      <img src="https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg" alt="Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls." className="w-full h-full object-center object-cover" />
+                      <img src={e.imageUrl} alt={e.imageUrl} className="w-full h-full object-center object-cover object-scale-down" />
 
                     </div>
                     <div className="relative mt-4">

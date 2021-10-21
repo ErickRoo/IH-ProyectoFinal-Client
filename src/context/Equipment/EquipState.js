@@ -60,7 +60,6 @@ const EquipState = (props) => {
   }
 
   // BORRAR equipo
-
   const deleteEquipment = async (id) => {
     console.log(id);
     try {

@@ -104,7 +104,7 @@ function Home() {
                           <li className="w-64 inline-flex flex-col text-center lg:w-auto">
                             <div className="group relative">
                               <div className="w-full bg-gray-200 rounded-md overflow-hidden aspect-w-1 aspect-h-1">
-                                <img src="https://tailwindui.com/img/ecommerce-images/home-page-02-product-01.jpg" alt="Black machined steel pen with hexagonal grip and small white logo at top." className="w-full h-full object-center object-cover group-hover:opacity-75" />
+                                <img src={element.imageUrl} alt={element.imageUrl} className="w-full h-full object-center object-scale-down group-hover:opacity-75" />
                               </div>
                               <div className="mt-6">
                                 <p className="text-sm text-gray-500">

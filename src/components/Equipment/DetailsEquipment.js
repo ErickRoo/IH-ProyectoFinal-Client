@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import React, { useState, useEffect, useContext } from 'react';
 
 import EquipContext from '../../context/Equipment/EquipContext';
@@ -29,6 +31,7 @@ function DetailsEquipment(props) {
     description: "",
     category: "",
     price: 0,
+    imageUrl: "",
   })
 
   useEffect(() => {
@@ -48,7 +51,8 @@ function DetailsEquipment(props) {
         lastCalibrated: oneEquipment.lastCalibrated,
         description: oneEquipment.description,
         category: oneEquipment.category,
-        price: oneEquipment.price
+        price: oneEquipment.price,
+        imageUrl: oneEquipment.imageUrl,
       })
     }
 
@@ -79,6 +83,28 @@ function DetailsEquipment(props) {
     editEquipment(editEquip);
   }
 
+  // UPLOAD imagen
+  const uploadImage = async (imageInput) => {
+    const imagen = imageInput.target.files;
+    const formData = new FormData();
+    formData.append("file", imagen[0]);
+    formData.append("upload_preset", `${process.env.REACT_APP_UPLOAD_PRESET}`)
+
+    try {
+      const axiosCloudinary = await axios.post(`${process.env.REACT_APP_CLOUDINARY_URL_UPLOAD}`, formData)
+      console.log(axiosCloudinary);
+      const imageUrl = axiosCloudinary.data.secure_url;
+
+      setEditEquip({
+        ...editEquip,
+        imageUrl: imageUrl,
+      })
+
+    } catch (error) {
+      console.log(`Hubo un error al cargar imagen: ${error}`);
+    }
+  }
+
   return (
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -86,27 +112,11 @@ function DetailsEquipment(props) {
           {/* <!-- Image gallery --> */}
           <div className="flex flex-col-reverse">
             {/* <!-- Image selector --> */}
-            <div className="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-              <div className="grid grid-cols-4 gap-6" aria-orientation="horizontal" role="tablist">
-                <button id="tabs-1-tab-1" className="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50" aria-controls="tabs-1-panel-1" role="tab" type="button">
-                  <span className="sr-only">
-                    Angled view
-                  </span>
-                  <span className="absolute inset-0 rounded-md overflow-hidden">
-                    <img src="https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg" alt="" className="w-full h-full object-center object-cover" />
-                  </span>
-                  {/* <!-- Selected: "ring-indigo-500", Not Selected: "ring-transparent" --> */}
-                  <span className="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
-                </button>
-
-                {/* <!-- More images... --> */}
-              </div>
-            </div>
 
             <div className="w-full aspect-w-1 aspect-h-1">
               {/* <!-- Tab panel, show/hide based on tab state. --> */}
               <div id="tabs-1-panel-1" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabIndex="0">
-                <img src="https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg" alt="Angled front view with bag zipped and handles upright." className="w-full h-full object-center object-cover sm:rounded-lg" />
+                <img src={editEquip.imageUrl} alt={editEquip.imageUrl} className="w-full h-full object-center object-scale-down sm:rounded-lg" />
               </div>
 
               {/* <!-- More images... --> */}
@@ -252,6 +262,20 @@ function DetailsEquipment(props) {
                       </div>
                     </div>
 
+                    <div className="sm:col-span-6">
+                      <label for="create-imagen" className="block text-sm font-medium text-gray-700">
+                        Imagen
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          id="create-imagen"
+                          type="file"
+                          value={editEquip.imagenUrl}
+                          name="imageUrl"
+                          onChange={(e) => { uploadImage(e) }}
+                          className="p-1 border border-gray shadow-sm px-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent block w-full pr-6 sm:text-sm border-gray-300"></input>
+                      </div>
+                    </div>
 
                     {/* <!-- Reviews --> */}
 
