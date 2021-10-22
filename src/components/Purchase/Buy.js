@@ -57,7 +57,7 @@ function Buy() {
                     return (
                       <>
                         <li className="py-6 flex space-x-6">
-                          <img src="https://tailwindui.com/img/ecommerce-images/checkout-page-05-product-01.jpg" alt="Front of women&#039;s basic tee in heather gray." className="flex-none w-24 h-24 object-center object-cover bg-gray-100 rounded-md" />
+                          <img src={e.imageUrl} alt="Front of women&#039;s basic tee in heather gray." className="flex-none w-24 h-24 object-center object-scale-down bg-gray-100 rounded-md" />
                           <div className="flex-auto">
                             <div className="space-y-1 sm:flex sm:items-start sm:justify-between sm:space-x-6">
                               <div className="flex-auto text-sm font-medium space-y-1">

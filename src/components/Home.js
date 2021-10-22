@@ -15,7 +15,6 @@ function Home() {
 
   const ctxEquipment = useContext(EquipContext);
   const { equipment } = ctxEquipment;
-  console.log(equipment);
 
   return (
     <>

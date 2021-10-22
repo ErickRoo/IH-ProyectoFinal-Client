@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -27,7 +29,15 @@ function ListEquipment() {
 
   const auxAddProduct = (event, e) => {
     event.preventDefault();
-
+    if (!cart.cartItems.find(item => item._id === e._id)) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Producto agregado al carrito',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
     addProduct(e);
   }
 
@@ -57,6 +67,15 @@ function ListEquipment() {
                     <div className="relative mt-4">
                       <h3 className="text-sm font-medium text-gray-900">{e.name}</h3>
                       <p className="mt-1 text-sm text-gray-500">{e.model}</p>
+                      {
+                        (e.category === "rent") ?
+                          <p className="mt-1 text-sm text-gray-500">Equipo en Renta</p>
+                          :
+                          (e.category === "sale") ?
+                            <p className="mt-1 text-sm text-gray-500">Equipo en Venta</p>
+                            :
+                            null
+                      }
                     </div>
                     <div className="absolute top-0 inset-x-0 h-72 rounded-lg p-4 flex items-end justify-end overflow-hidden">
                       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"></div>
@@ -66,15 +85,13 @@ function ListEquipment() {
                 </div>
                 <div className="mt-6">
                   {
-                    (user.rol === 1 && authStatus) ?
-                      <button onClick={(event) => { auxAddProduct(event, e) }} className="relative flex bg-gray-100 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-200 sm:w-full">Add to Cart<span className="sr-only">, {e.name}</span></button>
+
+                    (user.rol === 0 && authStatus) ?
+                      <button type="submit" className="relative flex bg-red-400 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-semibold text-red-900 hover:bg-red-200 sm:w-full"
+                        onClick={(event) => { auxDeleteEquipment(event, e) }}
+                      >Eliminar<span className="sr-only">, {e.name}</span></button>
                       :
-                      (user.rol === 0 && authStatus) ?
-                        <button type="submit" className="relative flex bg-red-400 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-semibold text-red-900 hover:bg-red-200 sm:w-full"
-                          onClick={(event) => { auxDeleteEquipment(event, e) }}
-                        >Eliminar<span className="sr-only">, {e.name}</span></button>
-                        :
-                        null
+                      <button onClick={(event) => { auxAddProduct(event, e) }} className="relative flex bg-gray-100 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-200 sm:w-full">Add to Cart<span className="sr-only">, {e.name}</span></button>
                   }
                 </div>
               </div>

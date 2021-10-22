@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 import React, { useContext, useState } from 'react';
 
 import UsersContext from '../../context/Users/UsersContext';
@@ -30,13 +32,36 @@ function Signup() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    registerUser(newUser);
+    if (!(newUser.username && newUser.email && newUser.password)) {
+      return (
+        Swal.fire({
+          title: 'Error al llenar el formulario',
+          text: 'Por favor llena todos los campos',
+          icon: "error"
+        })
+      )
+    } else if (newUser.password.length < 7) {
+      return (
+        Swal.fire({
+          title: 'Contraseña',
+          text: 'Por favor escribe una constraseña mayor de 6 caractéres',
+          icon: "error"
+        })
+      )
+    } else {
+      registerUser(newUser);
 
-    setNewUser({
-      username: "",
-      email: "",
-      password: ""
-    })
+      setNewUser({
+        username: "",
+        email: "",
+        password: ""
+      })
+      Swal.fire({
+        title: '¡Usuario creado correctamente!',
+        text: 'Ahora dirígete a iniciar sesión',
+        icon: "success"
+      })
+    }
 
   }
 
@@ -85,7 +110,7 @@ function Signup() {
 
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Contraseña
+                  Contraseña (mayor de 6 caractéres)
                 </label>
                 <div className="mt-1">
                   <input

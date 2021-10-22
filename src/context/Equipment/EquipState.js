@@ -40,7 +40,8 @@ const EquipState = (props) => {
   const createEquipment = async (dataForm) => {
 
     try {
-      await axiosClient.post("/api/equipment/create-equipment", dataForm);
+      const res = await axiosClient.post("/api/equipment/create-equipment", dataForm);
+      console.log(res);
       return getAllEquipment();
 
     } catch (error) {

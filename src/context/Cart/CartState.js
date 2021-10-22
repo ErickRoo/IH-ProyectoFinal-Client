@@ -23,7 +23,6 @@ const CartState = (props) => {
 
   // 3 -- Funciones API / conexión a REDUCERs (dispatch)
   const addProduct = async (product) => {
-    console.log(product);
 
     try {
       dispatch({

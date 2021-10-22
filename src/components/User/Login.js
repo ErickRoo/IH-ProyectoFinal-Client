@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 import React, { useState, useContext } from 'react';
 
 import UsersContext from '../../context/Users/UsersContext';
@@ -28,7 +30,26 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    loginUser(userData);
+    if (!(userData.email && userData.password)) {
+      return (
+        Swal.fire({
+          title: 'Error al llenar el formulario',
+          text: 'Por favor llene los campos correctamente',
+          icon: "error"
+        })
+      )
+    } else {
+      loginUser(userData);
+      Swal.fire({
+        title: `Bienvenido`,
+        text: 'Tenemos nuevo productos!!!',
+        icon: "success",
+        stopKeydownPropagation: false,
+      })
+    }
+
+    // loginUser(userData);
+
   }
 
   return (

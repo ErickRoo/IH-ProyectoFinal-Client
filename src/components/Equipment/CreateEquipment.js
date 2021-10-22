@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 import React, { useState, useContext } from 'react';
 
@@ -38,19 +39,37 @@ function CreateEquipment() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    createEquipment(newEquipment);
+    if (!(newEquipment.name && newEquipment.model && newEquipment.category && newEquipment.price)) {
+      // Ventanas emergentes
+      return Swal.fire({
+        title: 'Error al llenar el formulario',
+        text: 'Por favor llena los campos con asterísco',
+        icon: "error"
+      })
 
-    setNewEquipment({
-      name: "",
-      model: "",
-      serialNum: 0,
-      price: 0,
-      calibrated: false,
-      lastCalibrated: "",
-      description: "",
-      category: "",
-      imageUrl: "",
-    })
+    } else {
+
+      createEquipment(newEquipment);
+
+      setNewEquipment({
+        name: "",
+        model: "",
+        serialNum: 0,
+        price: 0,
+        calibrated: false,
+        lastCalibrated: "",
+        description: "",
+        category: "",
+        imageUrl: "",
+      })
+
+      Swal.fire({
+        title: 'Equipo creado',
+        text: 'Se ha creado un equipo correctamente',
+        icon: "success"
+      })
+    }
+
   }
 
   // UPLOAD imagen
@@ -97,9 +116,10 @@ function CreateEquipment() {
                     </p>
                   </div>
                   <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+
                     <div className="sm:col-span-3">
                       <label for="create-name" className="block text-sm font-medium text-gray-700" >
-                        Nombre del equipo.
+                        Nombre del equipo.*
                       </label>
                       <div className="mt-1">
                         <input
@@ -115,7 +135,7 @@ function CreateEquipment() {
 
                     <div className="sm:col-span-3">
                       <label for="create-model" className="block text-sm font-medium text-gray-700">
-                        Modelo:
+                        Modelo:*
                       </label>
                       <div className="mt-1">
                         <input
@@ -146,7 +166,7 @@ function CreateEquipment() {
 
                     <div className="sm:col-span-3">
                       <label for="create-serialNum" className="block text-sm font-medium text-gray-700">
-                        Precio:
+                        Precio:*
                       </label>
                       <div className="mt-1">
                         <input
@@ -161,7 +181,7 @@ function CreateEquipment() {
 
                     <div className="sm:col-span-6">
                       <label for="create-category" className="block text-sm font-medium text-gray-700">
-                        Categoría:
+                        Categoría:*
                       </label>
                       <div className="mt-1">
                         <select
@@ -196,7 +216,6 @@ function CreateEquipment() {
                         </select>
                       </div>
                     </div>
-
 
                     <div className="sm:col-span-6">
                       <label for="create-lastCalibrated" className="block text-sm font-medium text-gray-700">
