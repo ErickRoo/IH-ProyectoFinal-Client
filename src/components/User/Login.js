@@ -42,7 +42,7 @@ function Login() {
       loginUser(userData);
       Swal.fire({
         title: `Bienvenido`,
-        text: 'Tenemos nuevo productos!!!',
+        text: 'Tenemos nuevos productos!!!',
         icon: "success",
         stopKeydownPropagation: false,
       })
