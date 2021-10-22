@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import EquipContext from '../context/Equipment/EquipContext';
@@ -14,7 +14,13 @@ import logo from "../assets/logo.png"
 function Home() {
 
   const ctxEquipment = useContext(EquipContext);
-  const { equipment } = ctxEquipment;
+  const { equipment, getAllEquipment } = ctxEquipment;
+
+  useEffect(() => {
+
+    getAllEquipment();
+
+  }, []);
 
   return (
     <>
