@@ -367,6 +367,16 @@ function DetailsEquipment(props) {
                   <p className="text-3xl text-gray-900">${editEquip.price}</p>
                 </div>
 
+                {
+                  (editEquip.category === "rent") ?
+                    <p className="mt-1 text-sm text-gray-500">Equipo en Renta</p>
+                    :
+                    (editEquip.category === "sale") ?
+                      <p className="mt-1 text-sm text-gray-500">Equipo en Venta</p>
+                      :
+                      null
+                }
+
                 {/* <!-- Reviews --> */}
 
                 <div className="mt-6">
