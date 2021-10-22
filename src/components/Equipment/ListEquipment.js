@@ -100,7 +100,7 @@ function ListEquipment() {
                 <div className="relative">
                   <Link to={`/detalles-equipo/${e._id}`}>
                     <div className="relative w-full h-72 rounded-lg overflow-hidden">
-                      <img src={e.imageUrl} alt={e.imageUrl} className="w-full h-full object-center object-cover object-scale-down" />
+                      <img src={e.imageUrl} alt={e.imageUrl} className="w-full h-full object-center object-scale-down" />
 
                     </div>
                     <div className="relative mt-4">
