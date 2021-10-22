@@ -76,12 +76,9 @@ function Header() {
 
                   <div className="lg:hidden flex flex-1 items-center justify-end space-x-6">
                     <Link to="/crear-cuenta" className="text-sm font-medium text-white hover:text-gray-100"> Signup
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                      </svg>
                     </Link>
                     <span className="h-6 w-px bg-gray-600" aria-hidden="true"></span>
-                    <Link to="/iniciar-sesion" className="text-sm font-medium text-white hover:text-gray-100">Login
+                    <Link to="/iniciar-sesion" className="flex text-sm font-medium text-white hover:text-gray-100">Login
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                       </svg></Link>
@@ -108,8 +105,8 @@ function Header() {
 
                 <div className="hidden h-full lg:flex">
                   {/* <!-- Mega menus --> */}
-                  <div className="ml-8" x-data="Components.popoverGroup()" x-init="init()">
-                    <div className="h-full flex justify-center space-x-8">
+                  <div className="ml-8">
+                    <div className="h-full flex space-x-8">
                       <Link to="/lista-equipos" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Equipos</Link>
                       {
                         (authStatus && (user.rol === 0)) ?
@@ -124,7 +121,10 @@ function Header() {
                               <Link to="/servicios" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Servicios</Link>
                             </>
                             :
-                            null
+                            <>
+                              <Link to="/mision-vision-valores" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Nosotros</Link>
+
+                            </>
                       }
                     </div>
                   </div>
@@ -135,6 +135,32 @@ function Header() {
                   <span className="sr-only">Workflow</span>
                   <img src={eesMainLogo} alt="" className="h-12 w-auto" />
                 </Link>
+
+                <div className="lg:hidden h-full flex">
+                  <div className="ml-8">
+                    <div className="h-full flex flex-wrap space-x-8">
+                      <Link to="/lista-equipos" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Equipos</Link>
+                      {
+                        (authStatus && (user.rol === 0)) ?
+                          <Link to="/crear-equipos" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Crear Equipo</Link>
+                          :
+                          (authStatus && (user.rol === 1)) ?
+                            <>
+                              <Link to="/mis-compras" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Mis Compras</Link>
+
+                              <Link to="/mis-rentas" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Mis Rentas</Link>
+
+                              <Link to="/servicios" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Servicios</Link>
+                            </>
+                            :
+                            <>
+                              <Link to="/mision-vision-valores" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Nosotros</Link>
+
+                            </>
+                      }
+                    </div>
+                  </div>
+                </div>
 
                 <div className="flex-1 flex items-center justify-end">
                   <div className="flex items-center lg:ml-8">

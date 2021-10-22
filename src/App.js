@@ -23,7 +23,9 @@ import ListEquipment from "./components/Equipment/ListEquipment";
 import DetailsEquipment from "./components/Equipment/DetailsEquipment";
 import Header from "./components/Layout/Header";
 import CreateEquipment from "./components/Equipment/CreateEquipment";
+import MVV from "./components/MVV";
 import Error404 from "./components/Error404";
+import Portafolio from "./components/Portafolio";
 
 // Contextos
 import CartState from "./context/Cart/CartState";
@@ -66,6 +68,8 @@ function App() {
                     {/* RUTAS PUBLICAS */}
                     <PublicRoute exact path="/" component={Home} />
                     <PublicRoute exact path="/lista-equipos" component={ListEquipment} />
+                    <PublicRoute exact path="/mision-vision-valores" component={MVV} />
+                    <PublicRoute exact path="/portafolio" component={Portafolio} />
                     <PublicRoute exact path="/detalles-equipo/:idEquipo" component={DetailsEquipment} />
 
                     <Route path="*" component={Error404} />

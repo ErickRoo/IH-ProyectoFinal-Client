@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2"
 
 import React, { useState, useEffect, useContext } from 'react';
 
@@ -81,6 +82,12 @@ function DetailsEquipment(props) {
     event.preventDefault();
 
     editEquipment(editEquip);
+    Swal.fire({
+      title: `Editado exitosamente`,
+      text: '',
+      icon: "success",
+      stopKeydownPropagation: false,
+    })
   }
 
   // UPLOAD imagen

@@ -72,7 +72,7 @@ function Home() {
                       <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl xl:text-6xl">Electric Energy Solutions</h1>
                       <p className="mt-4 text-xl text-gray-600">Es una compañía que ofrece soluciones en el área de energía eléctrica tales como levantamientos, diseño de ingeniería, parametrización, configuración, programación, pruebas en fábrica, pruebas en sitio, etc.</p>
                       <div className="mt-6">
-                        <Link to="/portafolio" className="inline-block bg-indigo-600 border border-transparent py-3 px-8 rounded-md font-medium text-white hover:bg-indigo-700">Nuestro Portafólio.</Link>
+                        <Link to="/portafolio" className="inline-block bg-indigo-600 border border-transparent py-3 px-8 rounded-md font-medium text-white hover:bg-indigo-700">Nuestros Clientes.</Link>
                       </div>
                     </div>
                   </div>
@@ -143,7 +143,7 @@ function Home() {
               </div>
 
               <div className="mt-12 px-4 sm:hidden">
-                <a href="#" className="text-sm font-semibold text-indigo-600 hover:text-indigo-500">See everything<span aria-hidden="true"> &rarr;</span></a>
+                <Link to="/lista-equipos" className="text-sm font-semibold text-indigo-600 hover:text-indigo-500">See everything<span aria-hidden="true"> &rarr;</span></Link>
               </div>
             </div>
           </section>
