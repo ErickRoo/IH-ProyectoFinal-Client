@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import img7 from "../assets/img7.jpg"
 
@@ -32,7 +33,7 @@ function MVV() {
               </p>
             </div>
             <div class="p-6 bg-gray-50 rounded-bl-2xl rounded-br-2xl md:px-8">
-              <a href="#" class="text-base font-medium text-indigo-700 hover:text-indigo-600">Contact us<span aria-hidden="true"> &rarr;</span></a>
+              <Link to="/contacto" class="text-base font-medium text-indigo-700 hover:text-indigo-600">Contact us<span aria-hidden="true"> &rarr;</span></Link>
             </div>
           </div>
 
@@ -48,7 +49,7 @@ function MVV() {
               </p>
             </div>
             <div class="p-6 bg-gray-50 rounded-bl-2xl rounded-br-2xl md:px-8">
-              <a href="#" class="text-base font-medium text-indigo-700 hover:text-indigo-600">Contact us<span aria-hidden="true"> &rarr;</span></a>
+              <Link to="/contacto" class="text-base font-medium text-indigo-700 hover:text-indigo-600">Contact us<span aria-hidden="true"> &rarr;</span></Link>
             </div>
           </div>
 
@@ -69,7 +70,7 @@ function MVV() {
               </p>
             </div>
             <div class="p-6 bg-gray-50 rounded-bl-2xl rounded-br-2xl md:px-8">
-              <a href="#" class="text-base font-medium text-indigo-700 hover:text-indigo-600">Contact us<span aria-hidden="true"> &rarr;</span></a>
+              <Link to="/contacto" class="text-base font-medium text-indigo-700 hover:text-indigo-600">Contact us<span aria-hidden="true"> &rarr;</span></Link>
             </div>
           </div>
         </div>

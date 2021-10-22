@@ -123,6 +123,7 @@ function Header() {
                             :
                             <>
                               <Link to="/mision-vision-valores" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Nosotros</Link>
+                              <Link to="/contacto" className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Contáctanos</Link>
 
                             </>
                       }

@@ -26,6 +26,7 @@ import CreateEquipment from "./components/Equipment/CreateEquipment";
 import MVV from "./components/MVV";
 import Error404 from "./components/Error404";
 import Portafolio from "./components/Portafolio";
+import Contacto from "./components/Contacto";
 
 // Contextos
 import CartState from "./context/Cart/CartState";
@@ -67,6 +68,7 @@ function App() {
 
                     {/* RUTAS PUBLICAS */}
                     <PublicRoute exact path="/" component={Home} />
+                    <PublicRoute exact path="/contacto" component={Contacto} />
                     <PublicRoute exact path="/lista-equipos" component={ListEquipment} />
                     <PublicRoute exact path="/mision-vision-valores" component={MVV} />
                     <PublicRoute exact path="/portafolio" component={Portafolio} />
