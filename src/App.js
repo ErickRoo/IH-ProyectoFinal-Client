@@ -68,8 +68,8 @@ function App() {
 
                     {/* RUTAS PUBLICAS */}
                     <PublicRoute exact path="/" component={Home} />
-                    <PublicRoute exact path="/contacto" component={Contacto} />
                     <PublicRoute exact path="/lista-equipos" component={ListEquipment} />
+                    <PublicRoute exact path="/contacto" component={Contacto} />
                     <PublicRoute exact path="/mision-vision-valores" component={MVV} />
                     <PublicRoute exact path="/portafolio" component={Portafolio} />
                     <PublicRoute exact path="/detalles-equipo/:idEquipo" component={DetailsEquipment} />
